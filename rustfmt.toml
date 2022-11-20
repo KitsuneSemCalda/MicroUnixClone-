@@ -8,4 +8,13 @@ brace_style = "SameLineWhere"
 
 color = "Always"
 
+fn_args_layout = "Vertical"
+fn_single_line = true
+
+enum_discrim_align_threshold = 20
+
+force_explicit_abi = true
+
+format_strings = true
+
 
