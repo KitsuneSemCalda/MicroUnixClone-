@@ -26,8 +26,10 @@ jobs:
     - name: Adding rust-src to project
       run: rustup component add rust-src
     - name: Build
-      run: cargo build --verbose
+      uses: actions-rs/cargo@v1 
+      with:
+        command: buildd
     - name: Run tests
       uses: actions-rs/cargo@v1
       with:
-        command: test --verbose
+        command: test
