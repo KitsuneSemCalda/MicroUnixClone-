@@ -8,7 +8,9 @@ use core::panic::PanicInfo;
 use micro_unix_clone::println;
 
 #[no_mangle]
+
 pub extern "C" fn _start() -> ! {
+
     println!("Hello World{}", "!");
 
     #[cfg(test)]
@@ -20,13 +22,15 @@ pub extern "C" fn _start() -> ! {
 /// This function is called on panic.
 #[cfg(not(test))]
 #[panic_handler]
+
 fn panic(info: &PanicInfo) -> ! {
+
     println!("{}", info);
+
     loop {}
 }
 
 #[cfg(test)]
 #[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
-    micro_unix_clone::test_panic_handler(info)
-}
+
+fn panic(info: &PanicInfo) -> ! { micro_unix_clone::test_panic_handler(info) }
