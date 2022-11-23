@@ -23,7 +23,8 @@ jobs:
             toolchain: nightly
             override: true
             components: rustfmt, clippy
- 
+    - name: Adding rust-src to project
+      run: rustup component add rust-src
     - name: Build
       run: cargo build --verbose
     - name: Run tests
