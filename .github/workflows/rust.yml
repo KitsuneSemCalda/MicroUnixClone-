@@ -23,28 +23,34 @@ jobs:
             toolchain: nightly
             override: true
             components: rustfmt, clippy
+            
     - name: Adding rust-src to project
       run: rustup component add rust-src
+      
     - name: Build
       uses: actions-rs/cargo@v1 
       with:
         command: build
-      env:
-        RUSTFLAGS: "--verbose"
+        args: --verbose
+        
     - name: Run test in basic boot
       uses: actions-rs/cargo@v1
       with:
         command: test
         args: --verbose -- --test basic_boot
+        
     - name: Run test in should panic
+      uses: actions-rs/cargo@v1
       with:
         command: test
         args: --verbose -- --test should_panic
+        
     - name: Formatation check
       uses: actions-rs/cargo@v1
       with:
         command: fmt
         args: --all -- --check
+        
     - name: Clippy check
       uses: actions-rs/cargo@v1
       with:
