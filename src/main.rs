@@ -5,14 +5,13 @@
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
-use micro_unix_clone::println;
+use micro_unix_clone::init;
 
 #[no_mangle]
 
 pub extern "C" fn _start() -> ! {
-
-    println!("Hello World{}", "!");
-
+    init();
+    
     #[cfg(test)]
     test_main();
 
@@ -25,7 +24,7 @@ pub extern "C" fn _start() -> ! {
 
 fn panic(info: &PanicInfo) -> ! {
 
-    println!("{}", info);
+    micro_unix_clone::println!("{}", info);
 
     loop {}
 }
